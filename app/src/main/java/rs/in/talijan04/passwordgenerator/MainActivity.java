@@ -1,14 +1,15 @@
 package rs.in.talijan04.passwordgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtPassword;
+    private static final int NUM_DIGIT = 10;
 
+    TextView txtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +18,30 @@ public class MainActivity extends AppCompatActivity {
 
         txtPassword = (TextView) findViewById(R.id.txtPassword);
 
-        String temp_password = passwordGenerator(10);
+        String temp_password = passwordGenerator(NUM_DIGIT);
         txtPassword.setText(temp_password);
 
+        initDataFun();
     }
+
+
+    private void initDataFun() {
+
+        txtPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String temp_password = passwordGenerator(NUM_DIGIT);
+                txtPassword.setText(temp_password);
+            }
+        });
+    }
+
 
     private String passwordGenerator(int digit){
 
         String lower_cases = "qwertyuiopasdfghjklzxcvbnm";
         String upper_cases = "QWERTYUIOPASDFGHJKLZXCVBNM";
+        String signs = "~!@#$%^&*_+=-";
 
         String password = "";
 
@@ -47,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     rand = (int)(upper_cases.length() * Math.random());
                     password += String.valueOf(upper_cases.charAt(rand));
+                    break;
+                case 3:
+                    rand = (int)(signs.length() * Math.random());
+                    password += String.valueOf(signs.charAt(rand));
                     break;
             }
         }

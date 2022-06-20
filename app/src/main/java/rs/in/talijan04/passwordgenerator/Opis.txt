@@ -1,0 +1,1 @@
+The application helps you generate a random password as you used it for your user accounts. The password is not stored in the phone memory. Each new launch of the application generates a new password. If you want to save the password, it is best to do a screen shot
